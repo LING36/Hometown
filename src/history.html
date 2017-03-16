@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="indexApp">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>天下来宾，来者上宾</title>
+		<style>
+			h1,
+			h2,
+			h3,
+			h4,
+			h5 {
+				color: #333;
+			}
+			
+			.content {
+				float: left;
+			}
+			
+			.content h2 {
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+				background: #376d5f;
+				color: #fff;
+				padding-left: 10px;
+			}
+			
+			.history {
+				margin-bottom: 50px;
+			}
+			
+			.history h3 {
+				color: #333;
+				margin-top: 20px;
+			}
+			
+			.history p {
+				text-indent: 2em;
+				/*文本缩进2个字符*/
+			}
+		</style>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+	</head>
+
+	<body>
+		<div class="box clear">
+			<!--头部开始-->
+			<div class="header clear">
+				<img src="img/logo.png" />
+				<img src="img/title.png" class="logo" />
+				<ul class="clear">
+					<li><a href="index.html">首页</a></li>
+					<li class="hover"><a href="history.html" class="hover">历史文化</a></li>
+					<li><a href="economy.html">经济</a></li>
+					<li><a href="school.html">学校</a></li>
+					<li><a href="feature.html">特色</a></li>
+					<li><a href="scenic.html">旅游景点</a></li>
+				</ul>
+			</div>
+			<!--头部结束-->
+
+			<!--content start-->
+			<div class="content clear">
+				<h2>历史文化</h2>
+				<div class="history">
+					<h3>建制沿革</h3>
+					<div class="contenf1">
+						<!--json数据请求生成-->
+					</div>
+					<div class="contentf2">
+						<h3 style="padding-bottom: 20px;">文化</h3>
+						<h4>一、麒麟山人文化</h4>
+						<p>早在3万年前的旧石器时代，被称为壮家始祖的“麒麟山人”就在这里繁衍生息。秦统 麒麟山人骨化石 麒麟山人骨化石 一岭南时，在今来宾市境内首设县级行政建治，已有2200多年历史，汉、三国、南北朝均在境内设桂林郡治。经专家学者考察证实，来宾是盘古文化的重要发祥地，至今保存有以盘古神话为核心的包括盘古寺庙、地名、节日、歌舞、剧本唱词等在内的原生态的盘古文化。[3] </p>
+						<h4>二、观赏石文化</h4>
+						<p>合山奇石最初发现于1992年冬，当时被统称为“彩陶石”，因质地细腻，水洗度高，造型奇特，色彩艳丽，石皮有一层似古代彩色陶瓷的釉面而得名。2008年，中国观赏石协会授予合山市“中国观赏石之乡”。[24] </p>
+						<h4>三、民族语言</h4>
+						<p>普通话为通用语，汉语方言有西南官话桂柳片来宾话、客家语（麼个话）及壮语东红水河土语、柳江土语、柳黔土语。</p>
+						<p>分布地区有：</p>
+						<p>兴宾区：来宾话（柳州话）、铁路柳州话（火车站附近）、铁路普通话（火车站附近）、壮语（东红水河土语、柳江土语）、客家话（麻介话）；</p>
+						<p>合山市：来宾话（柳州话）、壮语（东红水河土语、柳江土语）；</p>
+						<p>金秀瑶族自治县：瑶语、壮语（柳黔土语）、来宾话（柳州话）；</p>
+						<p>武宣县：来宾话（武宣话、柳州话）、瑶语（境内零星分布）、壮语（东红水河土语分河南片及河北片）、客家话（境内零星分布）、伢话（北部乡镇零星分布）、湖南话（境内零星分布）；</p>
+						<p>象州县：来宾话（柳州话）、壮语（东红水河土语、柳江土语）、瑶族语言（境内零星分布）；</p>
+						<p>忻城县：来宾话（柳州话）、壮语（红水河土语、柳江土语）。</p>
+						<p>注：普通话作为全国标准语言和广泛推广的语言，在来宾市全境都有分布。</p>
+						<p>来宾的宣传语为：“天下来宾，来者上宾”。</p>
+						<h4>四、特产</h4>
+						<p>来宾有金秀大瑶山灵香草、绞股兰、灵芝，武宣的三华季、龙眼，象州大米、象州粉葛，忻城乳鸽酒、金银花等土特产。</p>
+					</div>
+				</div>
+			</div>
+			<!--content end-->
+
+			<!--底部-->
+			<div class="footer" style="position: absolute;bottom: -3800px;">
+				<p>版权所有@ling</p>
+			</div>
+		</div>
+	</body>
+	<script>
+		function history() {
+			$.ajax({
+				type: "get",
+				url: "json/history.json",
+				dataType: 'json', //数据类型 
+				success: function(data) {
+					$.each(data, function(id, value) {
+						//					console.log(value.content)
+						var $p = $('<p/>').appendTo('.contenf1').html(value.content); //'<img src= "' + value.img +'">'
+					});
+				}
+			});
+		};
+		history();
+	</script>
+
+</html>
