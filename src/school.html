@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="indexApp">
+	<head>
+		<meta charset="utf-8" />
+		<title>天下来宾，来者上宾</title>
+		<style>
+			.lingul li{
+				margin-top: 20px;
+			}
+			.lingul li:hover{
+					box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);/*//阴影*/
+			}
+			.lingul li .left{
+				/*border: 1px solid red;*/
+				float: left;
+				width: 40%;
+				margin-bottom: 20px;
+				padding-top: 20px;
+			}
+			.lingul li .right{
+				/*border: 1px solid blue;*/
+				float: right;
+				width: 60%;
+			}
+			.lingul li p{
+				text-indent: 2em;
+			}
+			.title{
+				font-weight: bold;
+			}
+		</style>
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+	</head>
+
+	<body>
+		<div class="box clear">
+			<!--头部开始-->
+			<div class="header clear">
+				<img src="img/logo.png" />
+				<img src="img/title.png" class="logo" />
+				<ul class="clear">
+					<li><a href="index.html">首页</a></li>
+					<li><a href="history.html">历史文化</a></li>
+					<li><a href="economy.html">经济</a></li>
+					<li class="hover"><a href="school.html" class="hover">知名中学</a></li>
+					<li><a href="feature.html">美食小吃</a></li>
+					<li><a href="scenic.html">旅游景点</a></li>
+				</ul>
+			</div>
+			<!--头部结束-->
+			<div class="content">
+				<h2>知名中学</h2>
+				<ul class="lingul">
+					
+					
+				</ul>
+			</div>
+			<!--底部-->
+				<div class="footer" style="position: absolute;bottom: -300px;">
+				<p>版权所有@ling</p>
+			</div>
+		</div>
+		<div/>
+
+	</body>
+	<script>
+		function school() {
+			$.ajax({
+				type: "get",
+				url: "json/school.json",
+				dataType: 'json', //数据类型 
+				success: function(data) {
+					$.each(data, function(id, value) {
+						console.log(value)
+						var $li = $('<li/>').appendTo('.lingul').addClass('clear');
+						var $div1 = $('<div/>').appendTo($li).html('<img src= "' + value.img +'">').addClass('left');
+						var $div2 = $('<div/>').appendTo($li).addClass('right');
+						var $p = $('<p/>').appendTo($div2).html(value.title).addClass('title');
+						var $p1 = $('<p/>').appendTo($div2).html(value.content1);
+						var $p2 = $('<p/>').appendTo($div2).html(value.content2);
+						var $div = $('<div/>').appendTo($div2).html('校训：' + value.content3);
+						var $jj = $('<div/>').appendTo($li).html(value.schoolintro + ":");
+						var $jp1 = $('<p/>').appendTo($li).html(value.intro1);
+						var $jp2 = $('<p/>').appendTo($li).html(value.intro2);
+					});
+				}
+			});
+		};
+		school();
+	</script>
+	
+</html>
+
